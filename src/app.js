@@ -1,6 +1,7 @@
 import express from 'express'
 import serverConfig from './config/serverConfig.js'
 import helmet from 'helmet'
+import connectToDb from './config/dbConfig.js';
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.get('/ping',(req,res)=>{
 })
 
 
-app.listen(serverConfig.PORT,()=>{
+app.listen(serverConfig.PORT,async ()=>{
     console.log("Server is running on port",serverConfig.PORT)
+    await connectToDb()
 })
