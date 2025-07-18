@@ -1,14 +1,14 @@
 import express from 'express';
 import controllers from '../controllers/index.js';
-import authMiddleware from '../middlewares/authMiddleware.js';
+import protect from '../middleware/authMiddleware.js';
 
 const {roomController} = controllers;
 
 const roomRouter = express.Router();
 
-roomRouter.use(authMiddleware);
+roomRouter.use(protect);
 
-roomRouter.post('/create',roomController.createRoom);
+roomRouter.post('/',roomController.createRoom);
 
 roomRouter.get('/',roomController.getRooms);
 

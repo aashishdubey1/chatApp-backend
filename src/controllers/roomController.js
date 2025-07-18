@@ -15,7 +15,8 @@ export const createRoom = async (req,res,next) => {
         })
 
         await room.populate('creator','username email')
-          .populate('members','username email');
+            
+            
 
         res.status(201).json({
             success:true,   
