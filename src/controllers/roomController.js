@@ -1,4 +1,4 @@
-import Room from "../models/Rooms.js";
+import Room from "../models/Room.js";
 import Message from "../models/Message.js";
 
 export const createRoom = async (req,res,next) => {
@@ -17,7 +17,6 @@ export const createRoom = async (req,res,next) => {
         await room.populate('creator','username email')
             
             
-
         res.status(201).json({
             success:true,   
             message: 'Room created successfully',

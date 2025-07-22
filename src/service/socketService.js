@@ -1,12 +1,13 @@
 import jwt from 'jsonwebtoken';
-import User from '../models/userModel.js';
-import Room from '../models/roomModel.js';
-import Message from '../models/messageModel.js';
+import User from '../models/User.js';
+import Room from '../models/Room.js';
+import Message from '../models/Message.js';
+import serverConfig from '../config/serverConfig.js';
 
 const socketAuth = async (socket,next) => {
     try {
         const token = socket.handshake.query.token;
-        const decoded = jwt.verify(token,config.JWT_SECRET);
+        const decoded = jwt.verify(token,serverConfig.JWT_SECRET);
         const user = await User.findById(decoded.id);
         if(!user) return next(new Error("User not found",404));
         socket.user = user;
